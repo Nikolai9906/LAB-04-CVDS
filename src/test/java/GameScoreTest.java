@@ -2,6 +2,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import hangman.exceptions.HangmanException;
+import hangman.model.BonusScore;
+import hangman.model.OriginalScore;
+
 /*
  * Clases de Equivalencia:
  * 
@@ -10,7 +14,7 @@ import org.junit.jupiter.api.Test;
  *|----------|----------------------------------------------------------|----------------------------------------|
  *|1		 | Incorrect <0 o Correct<0                                 |Arroja una Excepcion (HangManException) |
  *|2		 | 0<= Incorrect <= 10	                                    |Valor entre 100 y 0                     |
- *|3		 | Incorrect > 10	                                        |Valor igual a 0                         |
+ *|3		 | Incorrect => 10	                                        |Valor igual a 0                         |
  *
  * *BonusScore
  *|  Número  |Clase de equivalencia (en lenguaje natural o matemático)  |Resultado                               |
@@ -29,9 +33,19 @@ import org.junit.jupiter.api.Test;
 
 class GameScoreTest {
 
-	@Test
-	void test() {
-		fail("Not yet implemented");
+		@Test
+		public void originalScoreTest() throws HangmanException {
+			OriginalScore score = new OriginalScore();
+			assertEquals(0, score.calculateScore(5, 10));
+		try {
+	        score.calculateScore(-5, -5);
+	    } catch (HangmanException e) {
+	        assertEquals(e.getMessage(),(HangmanException.INVALIDARGUMENT));
+	    }
 	}
-
+		@Test
+		public void bonusScoreTest() throws HangmanException {
+			BonusScore score = new BonusScore();
+			assertEquals(50, score.calculateScore(5, 0));
+		}
 }
