@@ -47,5 +47,14 @@ class GameScoreTest {
 		public void bonusScoreTest() throws HangmanException {
 			BonusScore score = new BonusScore();
 			assertEquals(50, score.calculateScore(5, 0));
+			
+		try {
+			score.calculateScore(-1, -1);
+			
+		}catch ( HangmanException e) {
+			assertEquals(e.getMessage(), HangmanException.INVALIDARGUMENT);
+
 		}
+		}
+	
 }
