@@ -3,6 +3,14 @@ package hangman.model;
 import hangman.exceptions.HangmanException;
 
 public class OriginalScore implements GameScore{
+	/**
+     * @throws hangman.exceptions.HangmanException
+     * @pre El puntaje empieza en 100 puntos
+     * @pos El puntaje esta en un rango entre [0,100]
+     * @param correctCount - Cantidad de aciertos
+     * @param incorrectCount - Cantidad de errores
+     * @return puntaja total
+     */
 
 	@Override
 	public int calculateScore(int correctCount, int incorrectCount) throws HangmanException {
@@ -16,6 +24,11 @@ public class OriginalScore implements GameScore{
 			score = 0;
 		}
 		return score;
+	}
+	
+	@Override
+	public int getPuntajeInicial() {
+		return 100;
 	}
 
 }
